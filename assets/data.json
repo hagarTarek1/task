@@ -1,0 +1,43 @@
+{
+  "products" : [
+    {
+      "id" : "1",
+      "name" : "bag",
+      "categoryId" : "1",
+      "description" : "good material",
+      "prict" : 20,
+      "quantity" : 12
+    },
+    {
+      "id" : "2",
+      "name" : "shoes",
+      "categoryId" : "1",
+      "description" : "good material",
+      "prict" : 33,
+      "quantity" : 5
+    }
+  ],
+  "categories" : [
+    {
+      "id" : "1",
+      "title" : "new clothes",
+      "description" : "clother Category"  },
+    {
+      "id" : "2",
+      "title" : "Assets",
+      "description" : "assets Category"
+    }
+  ],
+  "ads" :[
+    {
+      "id" : "1",
+      "image" : "https://image.shutterstock.com/image-photo/fashionable-confident-blonde-woman-wearing-260nw-2117571818.jpg",
+      "text": "for all your summer clothes"
+    },
+    {
+      "id" : "2",
+      "image" : "https://img.freepik.com/premium-photo/fashionable-clothes-rack-interior-bright-room_441923-10902.jpg?size=626&ext=jpg&ga=GA1.1.1826414947.1699488000&semt=ais",
+      "text": "best seller"
+    }
+  ]
+}

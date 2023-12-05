@@ -11,7 +11,7 @@ class ForgetPassword extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit,HomeState>(builder: (context,state){
       return Scaffold(
-        backgroundColor: Colors.grey[200],
+        backgroundColor: Colors.grey[300],
         body: Column(children: [
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,

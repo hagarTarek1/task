@@ -5,6 +5,7 @@ import 'package:task/classes/carousel.dart';
 import 'package:task/model/categorymodel.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
+import 'package:task/view/components/products.dart';
 
 class HomeScreen extends StatelessWidget {
    HomeScreen({Key? key}) : super(key: key);
@@ -14,7 +15,12 @@ class HomeScreen extends StatelessWidget {
     var cubit=HomeCubit.get(context);
     BlocProvider.value(value: HomeCubit.get(context)..getData());
     return BlocConsumer<HomeCubit,HomeState>(builder: (context,state){
-      return Scaffold(body:
+      return
+      state is DataLoading?
+        Center(child: CircularProgressIndicator(),):
+        Scaffold(
+          backgroundColor: Colors.grey[300],
+          body:
           ListView(
             children: [
               CarouselSlider.builder(itemCount: cubit.categoriesModel?.ads?.length ?? 0,
@@ -30,13 +36,27 @@ class HomeScreen extends StatelessWidget {
                   viewportFraction: 1
                   ,
                   autoPlayAnimationDuration: const Duration(milliseconds: 100),
-                  autoPlay: false,
+                  autoPlay: true,
                   enlargeCenterPage: true,
                 ),
               ),
+              SizedBox( height: 170,
+                child: ListView.separated(
+                  padding: EdgeInsets.only(left: 10),
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemBuilder: (context,index){
+                  return AllProducts();
+                }, separatorBuilder: (context,index){
+                  return SizedBox(width: 15,);
+                }, itemCount: 3)
+              ),
+
         ],
           )
       );
-    }, listener: (context,state){});
+    }, listener: (context,state){
+
+    });
   }
 }

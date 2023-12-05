@@ -13,7 +13,7 @@ class Signup extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<HomeCubit,HomeState>(builder: (context,state){
       var cubit =HomeCubit.get(context);
-      return Scaffold( backgroundColor: Colors.grey[200],
+      return Scaffold( backgroundColor: Colors.grey[300],
           body: Column(
             children: [
               Padding(

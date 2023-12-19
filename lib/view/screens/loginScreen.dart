@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:task/classes/textformfield.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
@@ -54,14 +56,16 @@ class LoginScreen extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)
                 ),
-                child: Column(children: [
-                  CustomTextFormfield(Controllerr: cubit.emailController, hint: "UserName/Email", icon: Icons.email_outlined),
-                  Divider(
-                    color: Colors.grey[100],
-                  ),
-                  CustomTextFormfield(Controllerr: cubit.passController, hint: "password", icon: Icons.lock_outline_rounded)
+                child: Form( key: HomeCubit.formState,
+                  child: Column(children: [
+                    CustomTextFormfield(Controllerr: cubit.emailController, hint: "UserName/Email", icon: Icons.email_outlined),
+                    Divider(
+                      color: Colors.grey[100],
+                    ),
+                    CustomTextFormfield(Controllerr: cubit.passController, hint: "password", icon: Icons.lock_outline_rounded)
 
-                ],),),
+                  ],),
+                ),),
               SizedBox(height: 30,),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor:
@@ -71,7 +75,8 @@ class LoginScreen extends StatelessWidget {
                       minimumSize: Size(280, 60)
                   ),
                   onPressed: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                    cubit.logIn();
+
                   }, child: Row(children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 120),
@@ -123,4 +128,16 @@ class LoginScreen extends StatelessWidget {
                   )),
 
             ],));
-    }, listener: (context,state){});}}
+    }, listener: (context,state){
+      state is LoginLoading?
+      Center(child: CircularProgressIndicator(),):
+      state is LoginSuccess?
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen())):
+      QuickAlert.show(
+        context: context,
+        type: QuickAlertType.error,
+        title: 'Oops...',
+        text: 'Sorry, something went wrong try again',
+      );
+
+    });}}

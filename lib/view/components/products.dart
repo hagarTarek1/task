@@ -5,9 +5,11 @@ import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
 import 'package:task/view/screens/details.dart';
 
-class AllProducts extends StatelessWidget {
+import '../../model/categorymodel.dart';
 
-  AllProducts({Key? key}) : super(key: key);
+class AllProducts extends StatelessWidget {
+Categories? categories;
+  AllProducts({required this.categories,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,13 +34,13 @@ class AllProducts extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Expanded( flex: 3,
-                          child: Image.network("https://contents.mediadecathlon.com/p2393865/k59e9499e49d170903fb3c71ddaf67c3a/sq/250x250/Mens-Running-Shoes-Jogflow-100.1-Red.jpg")),
+                      // Expanded( flex: 3,
+                      //     child: Image.network("https://contents.mediadecathlon.com/p2393865/k59e9499e49d170903fb3c71ddaf67c3a/sq/250x250/Mens-Running-Shoes-Jogflow-100.1-Red.jpg")),
                       SizedBox(
                         height: 15,
                       ),
                       Expanded( flex: 1,
-                        child: Text( "ankie boots",
+                        child: Text( categories?.title ?? "",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 color: Colors.black54,
@@ -49,7 +51,7 @@ class AllProducts extends StatelessWidget {
                       ),
                       Expanded( flex: 1,
                         child: Text(
-                          "\$14",
+                         categories?.description?? "",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 color: Colors.black54,

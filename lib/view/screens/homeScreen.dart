@@ -13,7 +13,6 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit=HomeCubit.get(context);
-    BlocProvider.value(value: HomeCubit.get(context)..getData());
     return BlocConsumer<HomeCubit,HomeState>(builder: (context,state){
       return
       state is DataLoading?
@@ -23,11 +22,11 @@ class HomeScreen extends StatelessWidget {
           body:
           ListView(
             children: [
-              CarouselSlider.builder(itemCount: cubit.categoriesModel?.ads?.length ?? 0,
+              CarouselSlider.builder(itemCount: cubit.adsList?.length ?? 0,
         itemBuilder: (context,itemIndex, realIndex){
           return CarouselDetail(ads:
 
-           cubit.categoriesModel?.ads?[itemIndex] ?? Ads()
+           cubit.adsList?[itemIndex] ?? Ads()
           );
 
 
@@ -46,10 +45,10 @@ class HomeScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     shrinkWrap: true,
                     itemBuilder: (context,index){
-                  return AllProducts();
+                  return AllProducts(categories: cubit.categories?[index],);
                 }, separatorBuilder: (context,index){
                   return SizedBox(width: 15,);
-                }, itemCount: 3)
+                }, itemCount: cubit.categories?.length ?? 0)
               ),
 
         ],

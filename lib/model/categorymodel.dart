@@ -12,18 +12,6 @@ class CategoriesModel {
         products!.add(Products.fromJson(v));
       });
     }
-    if (json['categories'] != null) {
-      categories = <Categories>[];
-      json['categories'].forEach((v) {
-        categories!.add(Categories.fromJson(v));
-      });
-    }
-    if (json['ads'] != null) {
-      ads = <Ads>[];
-      json['ads'].forEach((v) {
-        ads!.add(Ads.fromJson(v));
-      });
-    }
   }
 
   Map<String, dynamic> toJson() {
@@ -83,8 +71,8 @@ class Categories {
 
   Categories({this.id, this.title, this.description});
 
-  Categories.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+  Categories.fromJson(Map<String, dynamic> json, String docId) {
+    id = docId;
     title = json['title'];
     description = json['description'];
   }
@@ -105,8 +93,8 @@ class Ads {
 
   Ads({this.id, this.image, this.text});
 
-  Ads.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+  Ads.fromJson(Map<String, dynamic> json, String docId) {
+    id = docId;
     image = json['image'];
     text = json['text'];
   }

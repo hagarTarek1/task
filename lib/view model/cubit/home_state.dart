@@ -4,3 +4,11 @@ class OnChange extends HomeState{}
 class DataSuccess extends HomeState{}
 class DataError extends HomeState{}
 class DataLoading extends HomeState{}
+class LoginLoading extends HomeState{}
+class LoginSuccess extends HomeState{}
+class LoginError extends HomeState{}
+class SignUpLoading extends HomeState{}
+class SignUpSuccess extends HomeState{}
+class SignUpError extends HomeState{}
+class GetAdsSuccess extends HomeState{}
+class GetCategoriesSuccess extends HomeState{}

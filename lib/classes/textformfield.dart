@@ -11,6 +11,12 @@ class CustomTextFormfield extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: (value) {
+      if (value!.isEmpty) {
+        return "please enter your Data";
+      }
+      return null;
+    },
       controller: Controllerr,
       scrollPadding: EdgeInsets.all(5),
       decoration: InputDecoration(border: InputBorder.none,

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quickalert/models/quickalert_type.dart';
+import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:task/classes/textformfield.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
+import 'package:task/view/screens/homeScreen.dart';
 
 import 'forgetpassword.dart';
 class Signup extends StatelessWidget {
@@ -53,14 +56,17 @@ class Signup extends StatelessWidget {
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)
                 ),
-                child: Column(children: [
-                  CustomTextFormfield(Controllerr: cubit.emailController, hint: "Email", icon: Icons.email_outlined),
-                  Divider(
-                    color: Colors.grey[100],
-                  ),
-                  CustomTextFormfield(Controllerr: cubit.userController, hint: "Username", icon: Icons.person_outline_outlined)
+                child: Form(
+                  key: HomeCubit.formState,
+                  child: Column(children: [
+                    CustomTextFormfield(Controllerr: cubit.emailController, hint: "Email", icon: Icons.email_outlined),
+                    Divider(
+                      color: Colors.grey[100],
+                    ),
+                    CustomTextFormfield(Controllerr: cubit.userController, hint: "Username", icon: Icons.person_outline_outlined)
 
-                ],),),
+                  ],),
+                ),),
       Container(
       margin: EdgeInsets.only(top: 20,right: 20,left: 20),
       height: 70,
@@ -79,11 +85,12 @@ class Signup extends StatelessWidget {
                       minimumSize: Size(280, 60)
                   ),
                   onPressed: (){
-                    // Navigator.push(context, MaterialPageRoute(builder: (context)=>HomePage()));
+                    cubit.signUp();
+                     Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
                   }, child: Row(children: [
                 Padding(
                   padding: const EdgeInsets.only(left: 120),
-                  child: Text('LOG IN',
+                  child: Text('sign up',
                     style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: Colors.white,
@@ -139,4 +146,17 @@ class Signup extends StatelessWidget {
                 ],),
 
             ],));
-    }, listener: (context,state){});}}
+    }, listener: (context,state){
+      state is SignUpLoading?
+      Center(child: CircularProgressIndicator(),):
+      state is SignUpSuccess?
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen())):
+      QuickAlert.show(
+        confirmBtnColor: Colors.red.shade700,
+        textColor: Colors.white,
+        context: context,
+        type: QuickAlertType.error,
+        title: 'Oops...',
+        text: 'Sorry, something went wrong try again',
+      );
+    });}}

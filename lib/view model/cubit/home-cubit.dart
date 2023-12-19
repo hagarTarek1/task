@@ -1,7 +1,6 @@
-import 'dart:convert';
-import 'package:dio/dio.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/model/categorymodel.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
@@ -13,6 +12,7 @@ class HomeCubit extends Cubit<HomeState>{
   HomeCubit():super(InitState()) ;
   static HomeCubit get(context)=> BlocProvider.of<HomeCubit>(context);
   PageController controller=PageController();
+  static var formState=GlobalKey<FormState>();
   TextEditingController emailController= TextEditingController();
   TextEditingController passController= TextEditingController();
   TextEditingController userController= TextEditingController();
@@ -36,19 +36,53 @@ onchange(int index){
     num=current;
     emit(OnChange());
     }
-  CategoriesModel? categoriesModel;
+    signUp() async {
+      try{
+        emit(SignUpLoading());
+        UserCredential user =await FirebaseAuth.instance.createUserWithEmailAndPassword(email: emailController.text, password: passController.text,);
+        emit(SignUpSuccess());
+      } catch (e){
+        print(e);
+        emit(SignUpError());
+      }
+    }
 
-  Future<void> getData()async{
-    // await Future.delayed(const Duration(seconds: 1));
-       try{
-         emit(DataLoading());
-    var response=await rootBundle.loadString('assets/data.json');
-    var value=jsonDecode(response);
-    categoriesModel=CategoriesModel.fromJson(value);
-    print(categoriesModel);
-    emit(DataSuccess()); }
-    catch(e){
-      print(e);
-      emit(DataError());}}
+    logIn() async {
+      try{
+        emit(LoginLoading());
+        UserCredential user = await FirebaseAuth.instance.signInWithEmailAndPassword(email: emailController.text, password: passController.text);
+        emit(LoginSuccess());
+      }
+      catch (e){
+        print(e);
+        emit(LoginError());
+      }
+    }
+  CategoriesModel? categoriesModel;
+  List<Categories>? categories =[];
+Future getDataCategory ()async {
+  QuerySnapshot<Map<String,dynamic>> result=await FirebaseFirestore.instance.collection("categories").get();
+  categories=List<Categories>.from(result.docs.map((e) => Categories.fromJson(e.data(),e.id)));
+  emit(GetCategoriesSuccess());
 }
+  List<Ads>? adsList =[];
+  Future getDataAds ()async {
+  QuerySnapshot<Map<String,dynamic>> result=await FirebaseFirestore.instance.collection("ads").get();
+  adsList=List<Ads>.from(result.docs.map((e) => Ads.fromJson(e.data(),e.id)));
+  emit(GetAdsSuccess());
+}}
+
+//   Future<void> getData()async{
+//     // await Future.delayed(const Duration(seconds: 1));
+//        try{
+//          emit(DataLoading());
+//     var response=await rootBundle.loadString('assets/data.json');
+//     var value=jsonDecode(response);
+//     categoriesModel=CategoriesModel.fromJson(value);
+//     print(categoriesModel);
+//     emit(DataSuccess()); }
+//     catch(e){
+//       print(e);
+//       emit(DataError());}}
+// }
 //

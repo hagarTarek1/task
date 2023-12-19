@@ -12,13 +12,12 @@ class LayOut extends StatelessWidget {
     return BlocConsumer<HomeCubit,HomeState>(builder: (context,state){
       return Scaffold(
         body: PageView(
-          children:
-
-          HomeCubit.get(context).list,
           scrollDirection: Axis.horizontal,
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           controller: HomeCubit.get(context).controller,
           onPageChanged: HomeCubit.get(context).onPageChanged(num),
+          children:
+          HomeCubit.get(context).list,
         ),
       );
     }, listener: (context,state){});

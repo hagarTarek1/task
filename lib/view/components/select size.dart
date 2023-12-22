@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
 
@@ -14,8 +15,8 @@ class SelectSize extends StatelessWidget {
         padding: EdgeInsets.zero,
        margin: EdgeInsets.zero,
        
-       width: 70,height: 1,
-       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10),color: Colors.white),
+       width: 70.w,height: 1.h,
+       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r),color: Colors.white),
         child: Center(child: Text(
             HomeCubit.get(context).sizes[index],style: TextStyle(height: 0,fontWeight: FontWeight.bold,color: Colors.black54),)),
       );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
 
@@ -13,7 +14,7 @@ class SelectedColor extends StatelessWidget {
     builder:(context,state){
       return
       // HomeCubit.get(context).onselected?
-       CircleAvatar(radius: 20,
+       CircleAvatar(radius: 20.r,
       backgroundColor: HomeCubit.get(context).colors[index]);
           // :
           // Stack(children: [

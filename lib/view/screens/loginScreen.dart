@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:task/classes/textformfield.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
@@ -20,22 +19,22 @@ class LoginScreen extends StatelessWidget {
           body: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 50,left: 25),
+                padding:  EdgeInsets.only(top: 50.h,left: 25.w),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(children: [
                     Text("Log In", style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: Colors.black,
-                          fontSize:35,
+                          fontSize:35.sp,
                           fontWeight: FontWeight.bold),),),
-                    SizedBox(width: 32,),
+                    SizedBox(width: 32.w,),
                     Text("Sign Up", style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: Colors.black38,
-                          fontSize:35,
+                          fontSize:35.sp,
                           fontWeight: FontWeight.bold),),),
-                    SizedBox(width: 32,),
+                    SizedBox(width: 32.w,),
                     InkWell(
                       onTap: (){
                          Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgetPassword()));
@@ -43,20 +42,20 @@ class LoginScreen extends StatelessWidget {
                       child: Text("Forget password", style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                             color: Colors.black38,
-                            fontSize:35,
+                            fontSize:35.sp,
                             fontWeight: FontWeight.bold),),),
                     ),
                   ],),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 40,right: 20,left: 20),
-                height: 150,
+                margin: EdgeInsets.only(top: 40.h,right: 20.w,left: 20.w),
+                height: 150.h,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(15)
                 ),
-                child: Form( key: HomeCubit.formState,
+                child: Form( key: HomeCubit.formState2,
                   child: Column(children: [
                     CustomTextFormfield(Controllerr: cubit.emailController, hint: "UserName/Email", icon: Icons.email_outlined),
                     Divider(
@@ -66,7 +65,7 @@ class LoginScreen extends StatelessWidget {
 
                   ],),
                 ),),
-              SizedBox(height: 30,),
+              SizedBox(height: 30.h,),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor:
                   Colors.red[400],
@@ -84,7 +83,7 @@ class LoginScreen extends StatelessWidget {
                     style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 20.sp,
                           fontWeight: FontWeight.w600),
                     ),),
                 ),
@@ -92,7 +91,7 @@ class LoginScreen extends StatelessWidget {
                 CircleAvatar(
                     radius: 16,
                     backgroundColor: Colors.white,
-                    child: Icon(Icons.arrow_forward_ios,color: Colors.red[700],size: 25,))
+                    child: Icon(Icons.arrow_forward_ios,color: Colors.red[700],size: 25.r,))
 
               ],)),
               SizedBox(height: 60,),
@@ -103,8 +102,8 @@ class LoginScreen extends StatelessWidget {
                   Text("Don't have an account? swipe right to ",
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
-                            fontSize: 12,
-                            height: 3,
+                            fontSize: 12.sp,
+                            height: 3.h,
                             color: Colors.black54,
                             fontWeight: FontWeight.bold),
                       )),
@@ -113,8 +112,8 @@ class LoginScreen extends StatelessWidget {
                       style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                             color: Colors.red[700],
-                            fontSize: 12,
-                            height: 1,
+                            fontSize: 12.sp,
+                            height: 1.h,
                             fontWeight: FontWeight.bold),
                       )), ],
               ),
@@ -122,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                   style: GoogleFonts.poppins(
                     textStyle: TextStyle(
                         color: Colors.red[700],
-                        fontSize: 12,
+                        fontSize: 12.sp,
                         height: 1,
                         fontWeight: FontWeight.bold),
                   )),

@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
@@ -27,17 +28,17 @@ class ProductDetailsScreen extends StatelessWidget {
         title: Text('Faux Sued Ankle Boots',style: GoogleFonts.poppins(
         textStyle: TextStyle(
         color: Colors.black54,
-            fontSize: 15 ,
+            fontSize: 15.sp ,
             fontWeight: FontWeight.w700),
       ),
     ),
         leading: Icon(Icons.arrow_back_ios,color: Colors.red.shade700,),
         actions: [
           Icon(Icons.shopping_cart),
-          SizedBox(width: 10,)
+          SizedBox(width: 10.w,)
         ],),
     body: Padding(
-      padding: const EdgeInsets.only(left: 10),
+      padding:  EdgeInsets.only(left: 10.w),
       child: ListView(children: [
       CarouselSlider(
       options: CarouselOptions(
@@ -54,8 +55,8 @@ class ProductDetailsScreen extends StatelessWidget {
         //   TextButton(onPressed: (){}, child:Text('Details')),
         //   TextButton(onPressed: (){}, child:Text('Reviews'))
         // ],)
-        SizedBox( width: 200,
-          height: 100,
+        SizedBox( width: 200.w,
+          height: 100.h,
           child: Center(
             child: ListView.separated(
               padding: EdgeInsets.zero,
@@ -70,17 +71,17 @@ class ProductDetailsScreen extends StatelessWidget {
                       cubit.onselected?
                   Colors.black54:
                   Colors.red[700],fontWeight: FontWeight.bold),));
-            }, separatorBuilder: (context,index)=>SizedBox(width: 10,), itemCount: cubit.texts.length),
+            }, separatorBuilder: (context,index)=>SizedBox(width: 10.w,), itemCount: cubit.texts.length),
           ),
         ),
         Text("Select Color",style: GoogleFonts.poppins(
       textStyle: TextStyle(
       color: Colors.black26,
-      fontSize: 18 ,
+      fontSize: 18.sp ,
       fontWeight: FontWeight.w600),)),
-        SizedBox( height: 100,
+        SizedBox( height: 100.h,
             child: ListView.separated(
-                padding: EdgeInsets.only(left: 10),
+                padding: EdgeInsets.only(left: 10.w),
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (context,index){
@@ -89,18 +90,18 @@ class ProductDetailsScreen extends StatelessWidget {
                   },
                       child: SelectedColor(index: index));
                 }, separatorBuilder: (context,index){
-              return SizedBox(width: 20,);
+              return SizedBox(width: 20.w,);
             }, itemCount: cubit.colors.length)
         ),
         Text("Select Size",style: GoogleFonts.poppins(
           textStyle: TextStyle(
               color: Colors.black26,
-              fontSize: 18 ,
+              fontSize: 18.sp ,
               fontWeight: FontWeight.w600),)),
-        SizedBox(height: 10,),
-        SizedBox( height: 40,
+        SizedBox(height: 10.h,),
+        SizedBox( height: 40.h,
             child: ListView.separated(
-                padding: EdgeInsets.only(left: 10),
+                padding: EdgeInsets.only(left: 10.w),
                 scrollDirection: Axis.horizontal,
                 shrinkWrap: true,
                 itemBuilder: (context,index){
@@ -109,10 +110,10 @@ class ProductDetailsScreen extends StatelessWidget {
                   },
                       child: SelectSize(index: index,));
                 }, separatorBuilder: (context,index){
-              return SizedBox(width: 20,);
+              return SizedBox(width: 20.w,);
             }, itemCount: cubit.sizes.length)
         ),
-        SizedBox(height: 50,),
+        SizedBox(height: 50.h,),
         Row(children: [
           ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor:
@@ -127,19 +128,19 @@ class ProductDetailsScreen extends StatelessWidget {
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
                     color: Colors.black54,
-                    fontSize: 17,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.bold),
               ),),
             Spacer(),
             CircleAvatar(
                 radius: 16,
                 backgroundColor: Colors.black54,
-                child: Icon(Icons.arrow_upward,color: Colors.white,size: 25,))
+                child: Icon(Icons.arrow_upward,color: Colors.white,size: 25.r,))
 
 
           ],
           )),
-          SizedBox(width: 15,),
+          SizedBox(width: 15.w,),
           ElevatedButton(
               style: ElevatedButton.styleFrom(backgroundColor:
               Colors.red[400],
@@ -153,14 +154,14 @@ class ProductDetailsScreen extends StatelessWidget {
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
                     color: Colors.white,
-                    fontSize: 17,
+                    fontSize: 17.sp,
                     fontWeight: FontWeight.w600),
               ),),
             Spacer(),
             CircleAvatar(
-                radius: 15,
+                radius: 15.r,
                 backgroundColor: Colors.white,
-                child: Icon(Icons.arrow_forward_ios,color: Colors.red[700],size: 22,))
+                child: Icon(Icons.arrow_forward_ios,color: Colors.red[700],size: 22.r,))
 
 
           ],

@@ -1,11 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:task/classes/carousel.dart';
 import 'package:task/model/categorymodel.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
-import 'package:task/view/components/products.dart';
+import 'package:task/view/components/categories.dart';
+
 
 class HomeScreen extends StatelessWidget {
    HomeScreen({Key? key}) : super(key: key);
@@ -18,10 +22,46 @@ class HomeScreen extends StatelessWidget {
       state is DataLoading?
         Center(child: CircularProgressIndicator(),):
         Scaffold(
-          backgroundColor: Colors.grey[300],
+          appBar: AppBar(elevation: 0,
+          toolbarHeight: 40,
+          automaticallyImplyLeading: false,
+          actions: [Icon(Icons.mode_comment_outlined),
+          SizedBox(width: 15.w,),
+          Icon(Icons.notification_add_outlined),
+            SizedBox(width: 10.w,),],),
+          backgroundColor: Colors.grey[50],
           body:
           ListView(
             children: [
+              Padding(
+                padding: EdgeInsets.only(left: 15.w,bottom: 10.h),
+                child: Text("Categories",style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w700),
+                ),),
+              ),
+
+              SizedBox(
+                height: 120.h,
+                  child: ListView.separated(
+                  padding: EdgeInsets.only(left: 10.w),
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  itemBuilder: (context,index){
+                    return CategoriesDetails(categories: cubit.categories?[index], index: index,);
+                  }, separatorBuilder: (context,index){
+                return SizedBox(width: 15.w,);
+              }, itemCount: cubit.categories?.length ?? 0)),
+              Padding(
+                padding: EdgeInsets.only(left: 15.w),
+                child: Text("Latest",style: GoogleFonts.poppins(
+                  textStyle: TextStyle(
+                      color: Colors.black,
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.w700),
+                ),),),
               CarouselSlider.builder(itemCount:
                cubit.adsList?.length ?? 0,
         itemBuilder: (context,itemIndex, realIndex){
@@ -41,17 +81,17 @@ class HomeScreen extends StatelessWidget {
                   enlargeCenterPage: true,
                 ),
               ),
-              SizedBox( height: 170,
-                child: ListView.separated(
-                  padding: EdgeInsets.only(left: 10),
-                    scrollDirection: Axis.horizontal,
-                    shrinkWrap: true,
-                    itemBuilder: (context,index){
-                  return AllProducts(categories: cubit.categories?[index],);
-                }, separatorBuilder: (context,index){
-                  return SizedBox(width: 15,);
-                }, itemCount: cubit.categories?.length ?? 0)
-              ),
+              // SizedBox(
+              //   child: ListView.separated(
+              //     padding: EdgeInsets.only(left: 10.w),
+              //       scrollDirection: Axis.horizontal,
+              //       shrinkWrap: true,
+              //       itemBuilder: (context,index){
+              //     return AllProducts(categories: cubit.categories?[index],);
+              //   }, separatorBuilder: (context,index){
+              //     return SizedBox(width: 15.w,);
+              //   }, itemCount: cubit.categories?.length ?? 0)
+              // ),
 
         ],
           )

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/model/categorymodel.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
+import 'package:task/view/components/categories.dart';
 import 'package:task/view/screens/signup.dart';
 import '../../view/screens/forgetpassword.dart';
 import '../../view/screens/loginScreen.dart';
@@ -13,9 +14,15 @@ class HomeCubit extends Cubit<HomeState>{
   static HomeCubit get(context)=> BlocProvider.of<HomeCubit>(context);
   PageController controller=PageController();
   static var formState=GlobalKey<FormState>();
+  static var formState2=GlobalKey<FormState>();
   TextEditingController emailController= TextEditingController();
   TextEditingController passController= TextEditingController();
   TextEditingController userController= TextEditingController();
+  List<Color> colorsList=[
+     Colors.orangeAccent,
+    Colors.blueAccent,
+     Colors.green,
+  ];
   List<Widget> list=<Widget>[
     LoginScreen(),
      Signup(),
@@ -56,8 +63,11 @@ onchange(int index){
       catch (e){
         print(e);
         emit(LoginError());
+      }}
+      logOut()  {
+        UserCredential user =  FirebaseAuth.instance.signOut() as UserCredential;
       }
-    }
+
   CategoriesModel? categoriesModel;
   List<Categories>? categories =[];
 Future getDataCategory ()async {

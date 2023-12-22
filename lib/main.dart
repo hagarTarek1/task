@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view/screens/splashScreen.dart';
 import 'firebase_options.dart';
@@ -23,9 +24,14 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => HomeCubit()..getDataCategory()..getDataAds())
         ],
-      child: MaterialApp(
+      child: ScreenUtilInit( designSize: const Size(360, 690),
+    minTextAdapt: true,
+    splitScreenMode: true,
+    builder: (context , child) {
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
               home: SplashScreen(),
-    ));
+    );}));
   }
 }
 

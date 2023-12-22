@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:quickalert/models/quickalert_type.dart';
-import 'package:quickalert/widgets/quickalert_dialog.dart';
 import 'package:task/classes/textformfield.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
@@ -20,22 +19,22 @@ class Signup extends StatelessWidget {
           body: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.only(top: 50,left: 25),
+                padding:  EdgeInsets.only(top: 50.h,left: 25.w),
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: Row(children: [
                     Text("Sign Up", style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: Colors.black,
-                          fontSize:35,
+                          fontSize:35.sp,
                           fontWeight: FontWeight.bold),),),
-                    SizedBox(width: 32,),
+                    SizedBox(width: 32.w,),
                     Text("Log In", style: GoogleFonts.poppins(
                       textStyle: TextStyle(
                           color: Colors.black38,
-                          fontSize:35,
+                          fontSize:35.sp,
                           fontWeight: FontWeight.bold),),),
-                    SizedBox(width: 32,),
+                    SizedBox(width: 32.w,),
                     InkWell(
                       onTap: (){
                         Navigator.push(context, MaterialPageRoute(builder: (context)=>ForgetPassword()));
@@ -43,18 +42,18 @@ class Signup extends StatelessWidget {
                       child: Text("Forget password", style: GoogleFonts.poppins(
                         textStyle: TextStyle(
                             color: Colors.black38,
-                            fontSize:35,
+                            fontSize:35.sp,
                             fontWeight: FontWeight.bold),),),
                     ),
                   ],),
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(top: 40,right: 20,left: 20),
-                height: 150,
+                margin: EdgeInsets.only(top: 40.h,right: 20.w,left: 20.w),
+                height: 150.h,
                 decoration: BoxDecoration(
                     color: Colors.white,
-                    borderRadius: BorderRadius.circular(15)
+                    borderRadius: BorderRadius.circular(15.r)
                 ),
                 child: Form(
                   key: HomeCubit.formState,
@@ -63,20 +62,20 @@ class Signup extends StatelessWidget {
                     Divider(
                       color: Colors.grey[100],
                     ),
-                    // CustomTextFormfield(Controllerr: cubit.userController, hint: "Username", icon: Icons.person_outline_outlined)
+                     CustomTextFormfield(Controllerr: cubit.passController, hint: 'Password', icon: Icons.lock_outline_rounded,)
 
                   ],),
                 ),),
-      Container(
-      margin: EdgeInsets.only(top: 20,right: 20,left: 20),
-      height: 70,
-      decoration: BoxDecoration(
-      color: Colors.white,
-      borderRadius: BorderRadius.circular(15)
-      ),
-      child:CustomTextFormfield(Controllerr: cubit.passController, hint: 'Password', icon: Icons.lock_outline_rounded,
-      )),
-              SizedBox(height: 30,),
+      // Container(
+      // margin: EdgeInsets.only(top: 20.h,right: 20.w,left: 20.w),
+      // height: 70.h,
+      // decoration: BoxDecoration(
+      // color: Colors.white,
+      // borderRadius: BorderRadius.circular(15.r)
+      // ),
+      // child:CustomTextFormfield(Controllerr: cubit.passController, hint: 'Password', icon: Icons.lock_outline_rounded,
+      // )),
+              SizedBox(height: 30.h,),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(backgroundColor:
                   Colors.red[400],

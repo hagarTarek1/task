@@ -22,11 +22,13 @@ class HomeScreen extends StatelessWidget {
           body:
           ListView(
             children: [
-              CarouselSlider.builder(itemCount: cubit.adsList?.length ?? 0,
+              CarouselSlider.builder(itemCount:
+               cubit.adsList?.length ?? 0,
         itemBuilder: (context,itemIndex, realIndex){
           return CarouselDetail(ads:
 
            cubit.adsList?[itemIndex] ?? Ads()
+
           );
 
 

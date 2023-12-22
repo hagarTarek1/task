@@ -133,11 +133,14 @@ class LoginScreen extends StatelessWidget {
       Center(child: CircularProgressIndicator(),):
       state is LoginSuccess?
       Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen())):
-      QuickAlert.show(
-        context: context,
-        type: QuickAlertType.error,
-        title: 'Oops...',
-        text: 'Sorry, something went wrong try again',
-      );
+      // QuickAlert.show(
+      //   showCancelBtn: true,
+      //   context: context,
+      //   type: QuickAlertType.error,
+      //   title: 'Oops...',
+      //   text: 'Sorry, something went wrong try again',
+      // );
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Try again")));
 
     });}}

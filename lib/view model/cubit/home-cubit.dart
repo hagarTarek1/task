@@ -67,6 +67,8 @@ Future getDataCategory ()async {
 }
   List<Ads>? adsList =[];
   Future getDataAds ()async {
+
+    Future.delayed(const Duration(seconds:1));
   QuerySnapshot<Map<String,dynamic>> result=await FirebaseFirestore.instance.collection("ads").get();
   adsList=List<Ads>.from(result.docs.map((e) => Ads.fromJson(e.data(),e.id)));
   emit(GetAdsSuccess());

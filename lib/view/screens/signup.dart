@@ -63,7 +63,7 @@ class Signup extends StatelessWidget {
                     Divider(
                       color: Colors.grey[100],
                     ),
-                    CustomTextFormfield(Controllerr: cubit.userController, hint: "Username", icon: Icons.person_outline_outlined)
+                    // CustomTextFormfield(Controllerr: cubit.userController, hint: "Username", icon: Icons.person_outline_outlined)
 
                   ],),
                 ),),
@@ -151,12 +151,14 @@ class Signup extends StatelessWidget {
       Center(child: CircularProgressIndicator(),):
       state is SignUpSuccess?
       Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen())):
-      QuickAlert.show(
-        confirmBtnColor: Colors.red.shade700,
-        textColor: Colors.white,
-        context: context,
-        type: QuickAlertType.error,
-        title: 'Oops...',
-        text: 'Sorry, something went wrong try again',
-      );
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("Try again")));
+      // QuickAlert.show(
+      //   confirmBtnColor: Colors.red.shade700,
+      //   textColor: Colors.white,
+      //   context: context,
+      //   type: QuickAlertType.error,
+      //   title: 'Oops...',
+      //   text: 'Sorry, something went wrong try again',
+      // );
     });}}

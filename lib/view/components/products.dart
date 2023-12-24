@@ -9,8 +9,9 @@ import 'package:task/view/screens/details.dart';
 import '../../model/categorymodel.dart';
 
 class AllProducts extends StatelessWidget {
-Categories? categories;
-  AllProducts({required this.categories,Key? key}) : super(key: key);
+  final int index;
+  Products? products;
+  AllProducts({required this.products,required this.index,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,7 @@ Categories? categories;
               elevation: 3,
               child: InkWell(
                 onTap: () {
-                  Navigator.push(context,MaterialPageRoute(builder: (context)=> ProductDetailsScreen()));
+                  Navigator.push(context,MaterialPageRoute(builder: (context)=> ProductDetailsScreen(products: HomeCubit.get(context).products?[index], index: index,)));
                 },
                 child: Padding(
                   padding:
@@ -35,13 +36,13 @@ Categories? categories;
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // Expanded( flex: 3,
-                      //     child: Image.network("https://contents.mediadecathlon.com/p2393865/k59e9499e49d170903fb3c71ddaf67c3a/sq/250x250/Mens-Running-Shoes-Jogflow-100.1-Red.jpg")),
+                      Expanded( flex: 3,
+                        child: Image.network(products?.image ?? "")),
                       SizedBox(
                         height: 15.h,
                       ),
                       Expanded( flex: 1,
-                        child: Text( categories?.title ?? "",
+                        child: Text( products?.name ?? "",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 color: Colors.black54,
@@ -52,7 +53,7 @@ Categories? categories;
                       ),
                       Expanded( flex: 1,
                         child: Text(
-                         categories?.description?? "",
+                         products?.description?? "",
                           style: GoogleFonts.poppins(
                             textStyle: TextStyle(
                                 color: Colors.black54,

@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/model/categorymodel.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
-import 'package:task/view/components/categories.dart';
 import 'package:task/view/screens/signup.dart';
 import '../../view/screens/forgetpassword.dart';
 import '../../view/screens/loginScreen.dart';
@@ -28,7 +27,8 @@ class HomeCubit extends Cubit<HomeState>{
      Signup(),
     ForgetPassword()
   ];
-List <Widget> images =[Image.network("https://contents.mediadecathlon.com/p2393865/k59e9499e49d170903fb3c71ddaf67c3a/sq/250x250/Mens-Running-Shoes-Jogflow-100.1-Red.jpg",width:double.infinity,fit: BoxFit.fitWidth),];
+  List <Widget> images =[Image.network("https://contents.mediadecathlon.com/p2393865/k59e9499e49d170903fb3c71ddaf67c3a/sq/250x250/Mens-Running-Shoes-Jogflow-100.1-Red.jpg",width:double.infinity,fit: BoxFit.fitWidth),];
+
   List <Color> colors =[Colors.red,Colors.orange,Colors.blue,Colors.white,Colors.grey,Colors.black];
   List <String>sizes =["4.5","5.0","6.5","7.0","8.5"];
   List texts =['Product','Details','Reviews'];
@@ -70,19 +70,50 @@ onchange(int index){
 
   CategoriesModel? categoriesModel;
   List<Categories>? categories =[];
-Future getDataCategory ()async {
-  QuerySnapshot<Map<String,dynamic>> result=await FirebaseFirestore.instance.collection("categories").get();
-  categories=List<Categories>.from(result.docs.map((e) => Categories.fromJson(e.data(),e.id)));
-  emit(GetCategoriesSuccess());
-}
+  Future getDataCategory ()async {
+    try{
+      emit(GetCategoriesLoading());
+      QuerySnapshot<Map<String,dynamic>> result=await FirebaseFirestore.instance.collection("categories").get();
+    categories=List<Categories>.from(result.docs.map((e) => Categories.fromJson(e.data(),e.id)));
+    emit(GetCategoriesSuccess());}
+        catch(e){
+      print(e.toString());
+      emit(GetCategoriesError());
+        }
+  }
+ 
+  // QuerySnapshot<Map<String,dynamic>> result=await FirebaseFirestore.instance.collection("categories").get();
+  // categories=List<Categories>.from(result.docs.map((e) => Categories.fromJson(e.data(),e.id)));
+  // emit(GetCategoriesSuccess());
   List<Ads>? adsList =[];
   Future getDataAds ()async {
-
-    Future.delayed(const Duration(seconds:1));
+    try{
+      emit(GetAdsLoading());
   QuerySnapshot<Map<String,dynamic>> result=await FirebaseFirestore.instance.collection("ads").get();
   adsList=List<Ads>.from(result.docs.map((e) => Ads.fromJson(e.data(),e.id)));
-  emit(GetAdsSuccess());
-}}
+  emit(GetAdsSuccess());}
+        catch(e){
+      print(e.toString());
+      emit(GetAdsError());
+        }
+}
+  List<Products>? products =[];
+  Future getDataProducts ()async {
+    try {
+      emit(GetProductsLoading());
+      QuerySnapshot<Map<String, dynamic>> result = await FirebaseFirestore
+          .instance.collection("products").get();
+      products = List<Products>.from(
+          result.docs.map((e) => Products.fromJson(e.data(), e.id)));
+      emit(GetProductsSuccess());
+    }
+    catch (e) {
+      print(e.toString());
+      emit(GetProductsError());
+    }
+  }
+}
+
 
 //   Future<void> getData()async{
 //     // await Future.delayed(const Duration(seconds: 1));

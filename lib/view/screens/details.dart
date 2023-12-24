@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:task/model/categorymodel.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
 import 'package:task/view/components/select%20size.dart';
@@ -11,7 +12,9 @@ import '../components/select colors.dart';
 
 
 class ProductDetailsScreen extends StatelessWidget {
-  const ProductDetailsScreen ({Key? key}) : super(key: key);
+  final int index;
+  Products? products;
+   ProductDetailsScreen ({required this.products,required this.index,Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +28,7 @@ class ProductDetailsScreen extends StatelessWidget {
         elevation: 0,
         foregroundColor: Colors.black,
         centerTitle: true,
-        title: Text('Faux Sued Ankle Boots',style: GoogleFonts.poppins(
+        title: Text(products?.name ?? "",style: GoogleFonts.poppins(
         textStyle: TextStyle(
         color: Colors.black54,
             fontSize: 15.sp ,
@@ -40,21 +43,15 @@ class ProductDetailsScreen extends StatelessWidget {
     body: Padding(
       padding:  EdgeInsets.only(left: 10.w),
       child: ListView(children: [
-      CarouselSlider(
-      options: CarouselOptions(
-      autoPlay: true,
-        enlargeCenterPage: true,
-        viewportFraction: .9,
-      ),
-        items: HomeCubit.get(context).images,),
-        // Row(crossAxisAlignment: CrossAxisAlignment.center,
-        // mainAxisAlignment: MainAxisAlignment.center,
-        // children: [
-        //   TextButton(
-        //       onPressed: (){}, child:Text('Product')),
-        //   TextButton(onPressed: (){}, child:Text('Details')),
-        //   TextButton(onPressed: (){}, child:Text('Reviews'))
-        // ],)
+        Image.network(products?.image??""),
+      // CarouselSlider(
+      // options: CarouselOptions(
+      // autoPlay: true,
+      //   enlargeCenterPage: true,
+      //   viewportFraction: .9,
+      // ),
+      //   items: HomeCubit.get(context).images,),
+      //
         SizedBox( width: 200.w,
           height: 100.h,
           child: Center(
@@ -119,8 +116,8 @@ class ProductDetailsScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(backgroundColor:
               Colors.white,
                   elevation: 2,
-                  maximumSize: Size(180, 60),
-                  minimumSize: Size(150, 50)
+                  maximumSize: Size(180.w, 60.h),
+                  minimumSize: Size(150.w, 50.h)
               ),
               onPressed: (){
               }, child: Row(children: [
@@ -145,8 +142,8 @@ class ProductDetailsScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(backgroundColor:
               Colors.red[400],
                   elevation: 5,
-                  maximumSize: Size(180, 60),
-                  minimumSize: Size(150, 50)
+                  maximumSize: Size(180.w, 60.h),
+                  minimumSize: Size(150.w, 50.h)
               ),
               onPressed: (){
               }, child: Row(children: [
@@ -173,6 +170,14 @@ class ProductDetailsScreen extends StatelessWidget {
 
 
     );
-    }, listener: (context,state){});
+    }, listener: (context,state){
+      if (state is GetProductsLoading){
+        Center(child: CircularProgressIndicator(),);}
+      else if (
+      state is GetProductsError){
+        ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("something error")));
+      }
+    });
   }
 }

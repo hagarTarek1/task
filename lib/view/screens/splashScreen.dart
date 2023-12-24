@@ -30,17 +30,19 @@ class SplashScreen extends StatelessWidget {
         return Scaffold(
           backgroundColor: Colors.grey[50],
           body: Center(child: Container(
-            margin: EdgeInsets.all(20.r),
-            height: 100.h,
+            margin: EdgeInsets.all(25.r),
+            height: 80.h,
             width: double.infinity,
             decoration: BoxDecoration(color: Colors.red.shade700,
               borderRadius: BorderRadius.circular(25.r),
             ),
-            child: Text('Welcome to our App', style: GoogleFonts.poppins(
-              textStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize:18.sp,
-                  fontWeight: FontWeight.bold),),),),),
+            child: Center(
+              child: Text('Welcome to\n  our App', style: GoogleFonts.poppins(
+                textStyle: TextStyle(
+                    color: Colors.white,
+                    fontSize:20.sp,
+                    fontWeight: FontWeight.bold),),),
+            ),),),
         );
       }, listener: (BuildContext context, HomeState state) { },
     );

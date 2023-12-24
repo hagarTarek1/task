@@ -22,7 +22,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
 
       providers: [
-        BlocProvider(create: (context) => HomeCubit()..getDataCategory()..getDataAds())
+        BlocProvider(create: (context) => HomeCubit()..getDataAds()..getDataCategory()..getDataProducts())
         ],
       child: ScreenUtilInit( designSize: const Size(360, 690),
     minTextAdapt: true,

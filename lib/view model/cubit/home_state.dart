@@ -12,3 +12,10 @@ class SignUpSuccess extends HomeState{}
 class SignUpError extends HomeState{}
 class GetAdsSuccess extends HomeState{}
 class GetCategoriesSuccess extends HomeState{}
+class GetCategoriesError extends HomeState{}
+class GetCategoriesLoading extends HomeState{}
+class GetAdsError extends HomeState{}
+class GetAdsLoading extends HomeState{}
+class GetProductsSuccess extends HomeState{}
+class GetProductsError extends HomeState{}
+class GetProductsLoading extends HomeState{}

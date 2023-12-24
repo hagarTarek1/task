@@ -10,6 +10,8 @@ import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
 import 'package:task/view/components/categories.dart';
 
+import '../components/products.dart';
+
 
 class HomeScreen extends StatelessWidget {
    HomeScreen({Key? key}) : super(key: key);
@@ -51,6 +53,7 @@ class HomeScreen extends StatelessWidget {
                   shrinkWrap: true,
                   itemBuilder: (context,index){
                     return CategoriesDetails(categories: cubit.categories?[index], index: index,);
+
                   }, separatorBuilder: (context,index){
                 return SizedBox(width: 15.w,);
               }, itemCount: cubit.categories?.length ?? 0)),
@@ -81,23 +84,45 @@ class HomeScreen extends StatelessWidget {
                   enlargeCenterPage: true,
                 ),
               ),
-              // SizedBox(
-              //   child: ListView.separated(
-              //     padding: EdgeInsets.only(left: 10.w),
-              //       scrollDirection: Axis.horizontal,
-              //       shrinkWrap: true,
-              //       itemBuilder: (context,index){
-              //     return AllProducts(categories: cubit.categories?[index],);
-              //   }, separatorBuilder: (context,index){
-              //     return SizedBox(width: 15.w,);
-              //   }, itemCount: cubit.categories?.length ?? 0)
-              // ),
+              SizedBox(height: 20,),
+              SizedBox(
+                height: 180,
+                child: ListView.separated(
+                  padding: EdgeInsets.only(left: 10.w),
+                    scrollDirection: Axis.horizontal,
+                    shrinkWrap: true,
+                    itemBuilder: (context,index){
+                  return AllProducts(products: cubit.products?[index], index: index,);
+                }, separatorBuilder: (context,index){
+                  return SizedBox(width: 15.w,);
+                }, itemCount: cubit.products?.length ?? 0)
+              ),
 
         ],
           )
       );
     }, listener: (context,state){
-
+    if (state is GetProductsLoading){
+        Center(child: CircularProgressIndicator(),);}
+    else if (
+        state is GetProductsError){
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("something error")));
+    }
+    if (state is GetAdsLoading){
+      Center(child: CircularProgressIndicator(),);}
+    else if (
+    state is GetAdsError){
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("something error")));
+    }
+    if (state is GetProductsLoading){
+      Center(child: CircularProgressIndicator(),);}
+    else if (
+    state is GetProductsError){
+      ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text("something error")));
+    }
     });
   }
 }

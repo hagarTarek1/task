@@ -5,13 +5,8 @@ class CategoriesModel {
 
   CategoriesModel({this.products, this.categories, this.ads});
 
-  CategoriesModel.fromJson(Map<String, dynamic> json) {
-    if (json['products'] != null) {
-      products = <Products>[];
-      json['products'].forEach((v) {
-        products!.add(Products.fromJson(v));
-      });
-    }
+  CategoriesModel.fromJson(Map<String, dynamic> json, String id) {
+
   }
 
   Map<String, dynamic> toJson() {
@@ -29,6 +24,7 @@ class CategoriesModel {
 
 class Products {
   String? id;
+  String? image;
   String? name;
   String? categoryId;
   String? description;
@@ -41,11 +37,13 @@ class Products {
         this.categoryId,
         this.description,
         this.prict,
-        this.quantity});
+        this.quantity,
+      this.image});
 
-  Products.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+  Products.fromJson(Map<String, dynamic> json, String docId) {
+    id = docId;
     name = json['name'];
+    image = json['image'];
     categoryId = json['categoryId'];
     description = json['description'];
     prict = json['prict'];
@@ -55,6 +53,7 @@ class Products {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['id'] = id;
+    data['image'] = image;
     data['name'] = name;
     data['categoryId'] = categoryId;
     data['description'] = description;

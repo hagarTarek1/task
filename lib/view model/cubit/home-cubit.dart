@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:task/model/categorymodel.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
+import 'package:task/view/screens/cart-page.dart';
+import 'package:task/view/screens/homeScreen.dart';
+import 'package:task/view/screens/profile-page.dart';
 import 'package:task/view/screens/signup.dart';
 import '../../view/screens/forgetpassword.dart';
 import '../../view/screens/loginScreen.dart';
@@ -33,6 +36,12 @@ class HomeCubit extends Cubit<HomeState>{
   List <String>sizes =["4.5","5.0","6.5","7.0","8.5"];
   List texts =['Product','Details','Reviews'];
 int current=0;
+int currentindex=0;
+List pages=[HomeScreen(),CartScreen(),const Profile()];
+changeCurrentIndex(i){
+ i=currentindex;
+ emit(ChangeSuccess());
+}
 bool onselected=false;
 onchange(int index){
   onselected=!onselected;

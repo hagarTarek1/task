@@ -19,3 +19,4 @@ class GetAdsLoading extends HomeState{}
 class GetProductsSuccess extends HomeState{}
 class GetProductsError extends HomeState{}
 class GetProductsLoading extends HomeState{}
+class ChangeSuccess extends HomeState{}

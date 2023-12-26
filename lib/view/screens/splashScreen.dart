@@ -7,6 +7,7 @@ import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
 import 'package:task/view/screens/homeScreen.dart';
 import 'package:task/view/screens/layout.dart';
+import 'package:task/view/screens/layoutS.dart';
 class SplashScreen extends StatelessWidget {
   const SplashScreen({Key? key}) : super(key: key);
 
@@ -21,7 +22,7 @@ class SplashScreen extends StatelessWidget {
         Navigator.push(context, MaterialPageRoute(builder: (context)=> LayOut()));
         print('User is currently signed out!');
       } else {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=> HomeScreen()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> LayOutScreen()));
         print('User is signed in!');
       }
     });

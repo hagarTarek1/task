@@ -28,7 +28,7 @@ class Products {
   String? name;
   String? categoryId;
   String? description;
-  int? prict;
+  int? price;
   int? quantity;
 
   Products(
@@ -36,7 +36,7 @@ class Products {
         this.name,
         this.categoryId,
         this.description,
-        this.prict,
+        this.price,
         this.quantity,
       this.image});
 
@@ -46,7 +46,7 @@ class Products {
     image = json['image'];
     categoryId = json['categoryId'];
     description = json['description'];
-    prict = json['prict'];
+    price = json['price'];
     quantity = json['quantity'];
   }
 
@@ -57,7 +57,7 @@ class Products {
     data['name'] = name;
     data['categoryId'] = categoryId;
     data['description'] = description;
-    data['prict'] = prict;
+    data['prict'] = price;
     data['quantity'] = quantity;
     return data;
   }

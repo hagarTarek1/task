@@ -7,6 +7,7 @@ import 'package:task/model/categorymodel.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
 import 'package:task/view/components/select%20size.dart';
+import 'package:task/view/screens/cart-page.dart';
 
 import '../components/select colors.dart';
 
@@ -116,7 +117,7 @@ class ProductDetailsScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(backgroundColor:
               Colors.white,
                   elevation: 2,
-                  maximumSize: Size(180.w, 60.h),
+                  maximumSize: Size(160.w, 60.h),
                   minimumSize: Size(150.w, 50.h)
               ),
               onPressed: (){
@@ -125,14 +126,14 @@ class ProductDetailsScreen extends StatelessWidget {
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
                     color: Colors.black54,
-                    fontSize: 17.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.bold),
               ),),
             Spacer(),
             CircleAvatar(
-                radius: 16,
+                radius: 12,
                 backgroundColor: Colors.black54,
-                child: Icon(Icons.arrow_upward,color: Colors.white,size: 25.r,))
+                child: Icon(Icons.arrow_upward,color: Colors.white,size: 10.r,))
 
 
           ],
@@ -142,23 +143,24 @@ class ProductDetailsScreen extends StatelessWidget {
               style: ElevatedButton.styleFrom(backgroundColor:
               Colors.red[400],
                   elevation: 5,
-                  maximumSize: Size(180.w, 60.h),
+                  maximumSize: Size(160.w, 60.h),
                   minimumSize: Size(150.w, 50.h)
               ),
               onPressed: (){
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>CartScreen()));
               }, child: Row(children: [
             Text('Add to cart',
               style: GoogleFonts.poppins(
                 textStyle: TextStyle(
                     color: Colors.white,
-                    fontSize: 17.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.w600),
               ),),
             Spacer(),
             CircleAvatar(
-                radius: 15.r,
+                radius: 12.r,
                 backgroundColor: Colors.white,
-                child: Icon(Icons.arrow_forward_ios,color: Colors.red[700],size: 22.r,))
+                child: Icon(Icons.arrow_forward_ios,color: Colors.red[700],size: 10.r,))
 
 
           ],

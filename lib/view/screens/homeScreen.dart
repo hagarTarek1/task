@@ -24,6 +24,7 @@ class HomeScreen extends StatelessWidget {
       state is DataLoading?
         Center(child: CircularProgressIndicator(),):
         Scaffold(
+
           appBar: AppBar(elevation: 0,
           toolbarHeight: 40,
           automaticallyImplyLeading: false,

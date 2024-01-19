@@ -12,43 +12,53 @@ class LayOutScreen extends StatelessWidget {
       var cubit = HomeCubit.get(context);
       return Scaffold(
         body: cubit.pages[cubit.currentindex],
-        bottomNavigationBar: BottomNavigationBar(
-          currentIndex:cubit.currentindex,
-          onTap: (i) {
-            cubit.changeCurrentIndex(i);
-          },
-          backgroundColor: Colors.grey.shade200,
-          type: BottomNavigationBarType.fixed,
-          selectedIconTheme: IconThemeData(color: Colors.red.shade700),
-          unselectedFontSize: 18,
-          unselectedItemColor: Colors.black,
-          unselectedLabelStyle:
-          TextStyle(color: Colors.black, fontSize: 14.sp),
-          selectedItemColor:Colors.red.shade700,
+          bottomNavigationBar: ClipRRect(
+          borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(25.r),
+      topRight: Radius.circular(25.r),
+      ),
+      child: BottomNavigationBar(
+      currentIndex: cubit.currentindex,
+      onTap: (i) {
+      cubit.changeCurrentIndex(i);
+      },
+      backgroundColor: Colors.grey.shade50,
+      type: BottomNavigationBarType.fixed,
+      selectedIconTheme: IconThemeData(color: Colors.red.shade700),
+      unselectedFontSize: 18,
+      unselectedItemColor: Colors.black38,
+        unselectedIconTheme: IconThemeData(color: Colors.black45),
+      unselectedLabelStyle:
+      TextStyle(color: Colors.black38, fontSize: 14.sp),
+      selectedItemColor:Colors.red.shade700,
+
           items: [
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
-                color: Colors.black,
               ),
               label: 'Home',
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 Icons.shopping_cart,
-                color: Colors.black,
               ),
               label: 'cart',
             ),
             BottomNavigationBarItem(
               icon: Icon(
+                Icons.outbound_outlined,
+              ),
+              label: 'orders',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
                 Icons.person,
-                color: Colors.black,
               ),
               label: 'profile',
             ),
           ],),
-      );
+      ));
     }, listener:(context,state){});
   }
 }

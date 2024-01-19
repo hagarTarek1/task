@@ -9,21 +9,21 @@ class CustomRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return InkWell( onTap: (){},
       child: Row(children: [
-        Icon(icon),
-        SizedBox(width: 20.w,),
+        Icon(icon,color: Colors.black45,),
+        SizedBox(width: 18.w,),
         Text(text,
           style: GoogleFonts.poppins(
             textStyle: TextStyle(
                 color: Colors.black45,
-                fontSize: 15.sp,
-                fontWeight: FontWeight.w500),),),
+                fontSize: 14.sp,
+                ),),),
         Spacer(),
         CircleAvatar(
-            radius: 15,
-            backgroundColor: Colors.black54,
-            child: Icon(Icons.arrow_upward,color: Colors.white,size: 15.r,))
+            radius: 10.r,
+            backgroundColor: Colors.grey.shade200,
+            child: Icon(Icons.arrow_forward_ios,color: Colors.black38,size: 10.r,))
 
       ],),
     );

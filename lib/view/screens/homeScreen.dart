@@ -9,6 +9,7 @@ import 'package:task/model/categorymodel.dart';
 import 'package:task/view%20model/cubit/home-cubit.dart';
 import 'package:task/view%20model/cubit/home_state.dart';
 import 'package:task/view/components/categories.dart';
+import 'package:task/view/components/see%20all.dart';
 
 import '../components/products.dart';
 
@@ -21,8 +22,6 @@ class HomeScreen extends StatelessWidget {
     var cubit=HomeCubit.get(context);
     return BlocConsumer<HomeCubit,HomeState>(builder: (context,state){
       return
-      state is DataLoading?
-        Center(child: CircularProgressIndicator(),):
         Scaffold(
 
           appBar: AppBar(elevation: 0,
@@ -48,16 +47,24 @@ class HomeScreen extends StatelessWidget {
 
               SizedBox(
                 height: 120.h,
-                  child: ListView.separated(
-                  padding: EdgeInsets.only(left: 10.w),
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  itemBuilder: (context,index){
-                    return CategoriesDetails(categories: cubit.categories?[index], index: index,);
-
-                  }, separatorBuilder: (context,index){
-                return SizedBox(width: 15.w,);
-              }, itemCount: cubit.categories?.length ?? 0)),
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        ListView.separated(
+                        padding: EdgeInsets.only(left: 10.w),
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemBuilder: (context,index){
+                          return CategoriesDetails(categories: cubit.categories?[index], index: index,);
+                        }, separatorBuilder: (context,index){
+                                        return SizedBox(width: 15.w,);
+                                      }, itemCount: cubit.categories?.length ?? 0),
+                        SizedBox(width: 15.w,),
+                        SeeAll()
+                      ],
+                    ),
+                  )),
               Padding(
                 padding: EdgeInsets.only(left: 15.w),
                 child: Text("Latest",style: GoogleFonts.poppins(
@@ -87,7 +94,7 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(height: 20,),
               SizedBox(
-                height: 180,
+                height: 170,
                 child: ListView.separated(
                   padding: EdgeInsets.only(left: 10.w),
                     scrollDirection: Axis.horizontal,

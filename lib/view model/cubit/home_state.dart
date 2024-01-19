@@ -4,12 +4,6 @@ class OnChange extends HomeState{}
 class DataSuccess extends HomeState{}
 class DataError extends HomeState{}
 class DataLoading extends HomeState{}
-class LoginLoading extends HomeState{}
-class LoginSuccess extends HomeState{}
-class LoginError extends HomeState{}
-class SignUpLoading extends HomeState{}
-class SignUpSuccess extends HomeState{}
-class SignUpError extends HomeState{}
 class GetAdsSuccess extends HomeState{}
 class GetCategoriesSuccess extends HomeState{}
 class GetCategoriesError extends HomeState{}
@@ -20,3 +14,33 @@ class GetProductsSuccess extends HomeState{}
 class GetProductsError extends HomeState{}
 class GetProductsLoading extends HomeState{}
 class ChangeSuccess extends HomeState{}
+class GetAllCategoriesSuccess extends HomeState{}
+class GetAllCategoriesError extends HomeState{}
+class GetAllCategoriesLoading extends HomeState{}
+class AddCartSuccess extends HomeState{}
+class CreateSuccess extends HomeState{}
+class AddCartError extends HomeState{}
+class AddCartLoading extends HomeState{}
+class GetCartSuccess extends HomeState{}
+class GetCartError extends HomeState{}
+class GetCartLoading extends HomeState{}
+class FetchDataSuccess extends HomeState{}
+class FetchDataError extends HomeState{}
+class FetchDataLoading extends HomeState{}
+class FetchDataEmpty extends HomeState{}
+class DeleteCartItemLoading extends HomeState{}
+class DeleteCartItemSuccess extends HomeState{}
+class DeleteCartItemError extends HomeState{}
+class OrdersLoading extends HomeState{}
+class OrdersSuccess extends HomeState{}
+class OrdersError extends HomeState{}
+
+class SumSuccess extends HomeState{}
+class OrderListLoading extends HomeState{}
+class OrderListSuccess extends HomeState{}
+class OrderListError extends HomeState{}
+class OrderLoading extends HomeState{}
+class OrderSuccess extends HomeState{}
+class OrderError extends HomeState{}
+class TotalCalculated extends HomeState{
+}
